@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     time_pedido: DataTypes.DATE,
     pedidosId: DataTypes.STRING,
     restaurantId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    permiso_user: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Pedido',

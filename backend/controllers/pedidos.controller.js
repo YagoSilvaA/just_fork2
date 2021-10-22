@@ -4,54 +4,60 @@ const models = require('../models');
 function save_for_user(req, res) {
 
     const restaurantId = parseInt(req.params.restaurantId);
+    models.Restaurant.findOne({ where: { id: restaurantId } }).then(result => {
+        if (result) {
+            const pedido = {
+                monto: req.body.monto,
+                pedidosId: req.body.pedidosId,
+                restaurantId: restaurantId,
+                userId: req.userData.userId,
+                permiso_user: req.userData.permiso
+            }
 
-    /* models.Restaurant.findOne({ where: { restaurantId: restaurantId } }).then(result => {
-         if (result) {*/
-    const pedido = {
-        monto: req.body.monto,
-        pedidosId: req.body.pedidosId,
-        restaurantId: restaurantId,
-        userId: req.userData.userId
-    }
+            const schema = {
+                monto: { type: "number", optional: false },
+                pedidosId: { type: "string", optional: false, max: "255" }
+            }
 
-    const schema = {
-        monto: { type: "number", optional: false },
-        pedidosId: { type: "string", optional: false, max: "255" }
-    }
+            const validate = new Validator();
+            const validationResponse = validate.validate(pedido, schema);
 
-    const validate = new Validator();
-    const validationResponse = validate.validate(pedido, schema);
+            if (validationResponse !== true) {
+                return res.status(400).json({
+                    message: "Validation failed",
+                    errors: validationResponse
+                });
+            }
 
-    if (validationResponse !== true) {
-        return res.status(400).json({
-            message: "Validation failed",
-            errors: validationResponse
-        });
-    }
-
-    models.Pedido.create(pedido).then(result => {
-        res.status(201).json({
-            message: "Pedido created with success",
-            pedido: result
-        });
+            models.Pedido.create(pedido).then(r => {
+                res.status(201).json({
+                    message: "Pedido created with success",
+                    pedido: r
+                });
+            }).catch(error => {
+                res.status(500).json({
+                    message: "Something went wrong",
+                    error: error
+                })
+            });
+        } else {
+            return res.status(404).json({
+                message: "Restaraunt not found"
+            })
+        }
     }).catch(error => {
         res.status(500).json({
             message: "Something went wrong",
             error: error
         })
-    });
-    /*} else {
-        res.status(404).json({
-            message: "Restaraunt not found"
-        })
-    }*/
-    //})
+    })
 }
 
 function show(req, res) {
     const id = req.params.id;
     const userId = req.userData.userId;
-    models.Pedido.findAll({ where: { id: id, userId: userId } }).then(result => {
+    const permiso = req.userData.permiso;
+    models.Pedido.findAll({ where: { id: id, userId: userId, permiso_user: permiso } }).then(result => {
         if (result == "") {
             res.status(404).json({
                 message: "Pedido not found"
@@ -69,7 +75,8 @@ function show(req, res) {
 
 function index(req, res) {
     const userId = req.userData.userId;
-    models.Pedido.findAll({ where: { userId: userId } }).then(result => {
+    const permiso = req.userData.permiso;
+    models.Pedido.findAll({ where: { userId: userId, permiso_user: permiso } }).then(result => {
         if (result == "") {
             res.status(404).json({
                 message: "Pedido not found"

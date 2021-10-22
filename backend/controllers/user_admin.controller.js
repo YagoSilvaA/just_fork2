@@ -24,7 +24,9 @@ function signUp(req, res) {
                                 user_lname: req.body.user_lname,
                                 email: req.body.email,
                                 password: hash,
-                                ubication: req.body.ubication
+                                ubication: req.body.ubication,
+                                permiso: 1,
+                                restaurantId: 0
                             }
 
                             const schema = {
@@ -101,7 +103,9 @@ function login(req, res) {
                 if (result) {
                     const token = jwt.sign({
                         email: user_admin.email,
-                        userId: user_admin.id
+                        userId: user_admin.id,
+                        permiso: user_admin.permiso,
+                        restaurantId: user_admin.restaurantId
                     }, process.env.JWT_KEY, function(err, token) {
                         res.status(200).json({
                             message: "Authentication successfull",

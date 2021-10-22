@@ -9,6 +9,5 @@ router.get("/:id", restaurantController.show);
 router.get("/", restaurantController.index);
 router.patch("/:id", checkAuthMiddleware.checkAuth, restaurantController.update);
 router.delete("/:id", checkAuthMiddleware.checkAuth, restaurantController.destroy);
-router.get("/generateT/:id", checkAuthMiddleware.checkAuth, restaurantController.useRestaurant);
 
 module.exports = router;

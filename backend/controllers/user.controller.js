@@ -24,7 +24,9 @@ function signUp(req, res) {
                                 user_lname: req.body.user_lname,
                                 email: req.body.email,
                                 password: hash,
-                                ubication: req.body.ubication
+                                ubication: req.body.ubication,
+                                permiso: 0,
+                                restaurantId: 0
                             }
 
                             const schema = {
@@ -101,8 +103,10 @@ function login(req, res) {
                 if (result) {
                     const token = jwt.sign({
                         email: user.email,
-                        userId: user.id
-                    }, process.env.JWT_US_KEY, function(err, token) {
+                        userId: user.id,
+                        permiso: user.permiso,
+                        restaurantId: user.restaurantId
+                    }, process.env.JWT_KEY, function(err, token) {
                         res.status(200).json({
                             message: "Authentication successfull consumidor",
                             token: token
@@ -123,7 +127,7 @@ function login(req, res) {
 }
 
 function destroy(req, res) {
-    const id = req.consData.userId;
+    const id = req.userData.userId;
     models.User.destroy({ where: { id: id } }).then(result => {
         if (result) {
             models.Pedido.destroy({ where: { userId: id } })

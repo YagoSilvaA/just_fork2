@@ -28,6 +28,14 @@ module.exports = {
                 allowNull: true,
                 type: Sequelize.STRING
             },
+            permiso: {
+                allowNull: false,
+                type: Sequelize.INTEGER
+            },
+            restaurantId: {
+                allowNull: false,
+                type: Sequelize.INTEGER
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

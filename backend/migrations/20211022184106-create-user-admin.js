@@ -1,30 +1,38 @@
 'use strict';
 module.exports = {
     up: async(queryInterface, Sequelize) => {
-        await queryInterface.createTable('Pedidos', {
+        await queryInterface.createTable('User_admins', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            monto: {
-                allowNull: false,
-                type: Sequelize.DOUBLE
-            },
-            time_pedido: {
-                allowNull: true,
-                type: Sequelize.DATE
-            },
-            pedidosId: {
+            user_name: {
                 allowNull: false,
                 type: Sequelize.STRING
             },
-            restaurantId: {
+            user_lname: {
+                allowNull: false,
+                type: Sequelize.STRING
+            },
+            email: {
+                allowNull: false,
+                type: Sequelize.STRING
+            },
+            password: {
+                allowNull: false,
+                type: Sequelize.STRING
+            },
+            ubication: {
+                allowNull: true,
+                type: Sequelize.STRING
+            },
+            permiso: {
                 allowNull: false,
                 type: Sequelize.INTEGER
             },
-            userId: {
+            restaurantId: {
                 allowNull: false,
                 type: Sequelize.INTEGER
             },
@@ -39,6 +47,6 @@ module.exports = {
         });
     },
     down: async(queryInterface, Sequelize) => {
-        await queryInterface.dropTable('Pedidos');
+        await queryInterface.dropTable('User_admins');
     }
 };
