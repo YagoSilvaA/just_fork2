@@ -1,0 +1,7 @@
+{
+    "env": {
+        "JWT_KEY": "secret",
+        "JWT_MENU_KEY": "secreto",
+        "JWT_US_KEY": "supersecreto"
+    }
+}
