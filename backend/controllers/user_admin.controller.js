@@ -149,8 +149,70 @@ function destroy(req, res) {
     })
 }
 
+function update(req, res) {
+    models.User.findOne({ where: { email: req.body.email } }).then(result => {
+        if (result) {
+            res.status(409).json({
+                message: "Email alredy exist"
+            });
+        } else {
+            models.User_admin.findOne({ where: { email: req.body.email } }).then(result => {
+                if (result) {
+                    res.status(409).json({
+                        message: "Email alredy exist",
+                    });
+                } else {
+                    bcryptjs.genSalt(10, function(err, salt) {
+                        bcryptjs.hash(req.body.password, salt, function(err, hash) {
+                            const update_admin = {
+                                email: req.body.email,
+                                password: hash,
+                                ubication: req.body.ubication,
+                            }
+
+                            const schema = {
+                                email: { type: "string", optional: true, max: "255" },
+                                password: { type: "string", optional: true, max: "255" },
+                                ubication: { type: "string", optional: true, max: "255" },
+                            }
+
+                            const validate = new Validator();
+                            const validationResponse = validate.validate(update_admin, schema);
+
+                            if (validationResponse !== true) {
+                                return res.status(400).json({
+                                    message: "Validation failed",
+                                    errors: validationResponse
+                                });
+                            }
+
+                            models.User_admin.update(update_admin, { where: { id: req.userData.userId } }).then(result => {
+                                res.status(201).json({
+                                    message: "User updated"
+                                });
+                            }).catch(error => {
+                                res.status(500).json({
+                                    message: "Something went wrong",
+                                    error: error
+                                });
+                            });
+
+                        })
+                    })
+                }
+            }).catch(error => {
+                res.status(500).json({
+                    message: "Something went wrong",
+                    error: error
+                });
+            })
+        }
+    })
+}
+
 module.exports = {
     signUp: signUp,
     login: login,
-    destroy: destroy
+    destroy: destroy,
+    update: update
 }
