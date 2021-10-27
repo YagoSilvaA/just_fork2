@@ -1,0 +1,9 @@
+<h2>Auth trabajando owo</h2>
+<button [disabled]="usedBtnUs" (click)="changeLogin()">Login</button>
+<button [disabled]="usedBtnAdm" (click)="changeLogin()">Register</button>
+<div *ngIf="this.btn_bool">
+    <app-login></app-login>
+</div>
+<div *ngIf="this.btn_bool == false">
+    <app-register></app-register>
+</div>

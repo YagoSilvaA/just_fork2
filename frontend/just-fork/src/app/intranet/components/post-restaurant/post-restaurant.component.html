@@ -1,0 +1,30 @@
+<h3>Formulario de post restaurant</h3>
+
+<div *ngIf="isRegVisible">
+    <h3>Formulario Registro Usuario</h3>
+    <form [formGroup]="formGroup" (ngSubmit)="postRestaurant()">
+        <div>
+            <input type="text" placeholder="nombre" formControlName="restaurant_name">
+        </div>
+        <div>
+            <input type="text" placeholder="ubication" formControlName="ubication">
+        </div>
+        <button type="submit">Restauranterador</button>
+    </form>
+</div>
+
+<div *ngIf="isRegVisible">
+    <h3>Formulario Registro Usuario</h3>
+    <form [formGroup]="patchGroup" (ngSubmit)="patchRestaurant()">
+        <div>
+            <input type="text" placeholder="nombre" formControlName="restaurant_name">
+        </div>
+        <div>
+            <input type="text" placeholder="ubication" formControlName="ubication">
+        </div>
+        <button type="submit">patch</button>
+    </form>
+</div>
+
+<input type="file" (change)="onFileSelected($event)">
+<button type="button" (click)="postImage()">Upload</button>
