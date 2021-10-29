@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { CookieService } from "ngx-cookie-service";
 import { IntranetService } from "../../intranet.service";
 
 @Component({
@@ -11,11 +12,13 @@ import { IntranetService } from "../../intranet.service";
 
 export class PostRestaurantComponent implements OnInit {
     isRegVisible = true;
+    isRegx = false;
     selectedFile: File | any = null;
     formGroup: FormGroup | any;
     patchGroup: FormGroup | any;
+    restaurants: any;
     private imageUrl: string = ""; 
-    constructor(private intranetService: IntranetService, private http: HttpClient) {}
+    constructor(private intranetService: IntranetService, private http: HttpClient, private cookieService: CookieService) {}
 
     ngOnInit(){
         this.initForm();
@@ -71,5 +74,25 @@ export class PostRestaurantComponent implements OnInit {
                 this.imageUrl = "localhost:7899/uploads/" + result.url; 
             }
         })
+    }
+
+    delCookie(){
+        const value: string = this.cookieService.get('token');
+        this.cookieService.delete('token');
+        console.log(value); 
+    }
+
+    getRestaurantData(){
+        this.intranetService.getRestaurantsData().subscribe(
+            response => this.restaurants = response,
+            error => console.log(error),
+        )
+    }
+    mostrarData(){
+        console.log(this.restaurants.restaurant_name);
+        console.log(this.restaurants);
+    }
+    actualizarForm(){
+        
     }
 }

@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
                     console.log(result.token);
                     this.cookieService.set('token', result.token);
                 }
+            }, err => {
+                alert("Los datos dados no estan registrados");
             })
         }
     }
@@ -49,6 +51,8 @@ export class LoginComponent implements OnInit {
                     console.log(result.token);
                     this.cookieService.set('token', result.token);
                 }
+            }, err => {
+                alert("Los datos dados no estan registrados");
             })
         }
     }

@@ -13,7 +13,9 @@
     </form>
 </div>
 
-<div *ngIf="isRegVisible">
+<button type="button" (click)="actualizarForm()">iniciar</button>
+
+<div *ngIf="isRegx">
     <h3>Formulario Registro Usuario</h3>
     <form [formGroup]="patchGroup" (ngSubmit)="patchRestaurant()">
         <div>
@@ -28,3 +30,6 @@
 
 <input type="file" (change)="onFileSelected($event)">
 <button type="button" (click)="postImage()">Upload</button>
+<button type="button" (click)="delCookie()">Delete</button>
+<button type="button" (click)="getRestaurantData()">Info</button>
+<button type="button" (click)="mostrarData()">data</button>

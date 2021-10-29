@@ -1,11 +1,9 @@
 <h3>Home component trabajando</h3>
-
 <div *ngFor="let r of restaurants">
     <h4>{{r.restaurant_name}}</h4>
     <div>
         <p> {{r.ubication}} </p>
         <div *ngIf="r.imageUrl">
-            <p>{{r.imageUrl}}</p>
             <img [src]="'http://'+r.imageUrl">
         </div>
     </div>

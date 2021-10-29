@@ -26,7 +26,13 @@ export class IntranetService{
             catchError(this.handleError)
         )
     }
-    
+
+    getRestaurantsData(): Observable<any> {
+        return this.http.get(`${baseUrl}restaurants/data/personal`).pipe(
+            catchError(this.handleError)
+        )
+    }
+
     private handleError(error: Response) {
         console.log(error);
         const msg = "Error status code" + error.status + "status" + error.statusText;

@@ -170,10 +170,29 @@ function destroy(req, res) {
     }
 }
 
+function getData(req, res) {
+    const id = req.userData.restaurantId;
+    models.Restaurant.findByPk(id).then(result => {
+        if (result) {
+            res.status(200).json(result);
+        } else {
+            res.status(404).json({
+                message: "Restaurant not found"
+            })
+        }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong",
+            error: error
+        })
+    })
+}
+
 module.exports = {
     save: save,
     show: show,
     index: index,
     update: update,
-    destroy: destroy
+    destroy: destroy,
+    getData: getData
 }
