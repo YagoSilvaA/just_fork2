@@ -22,7 +22,6 @@ export class PostRestaurantComponent implements OnInit {
 
     ngOnInit(){
         this.initForm();
-        this.patchForm(); 
     }
 
     initForm(){
@@ -34,8 +33,8 @@ export class PostRestaurantComponent implements OnInit {
 
     patchForm(){
         this.patchGroup = new FormGroup({
-            restaurant_name: new FormControl(''),
-            ubication: new FormControl(''),
+            restaurant_name: new FormControl(this.restaurants.restaurant_name),
+            ubication: new FormControl(this.restaurants.ubication),
             imageUrl: new FormControl('') 
         })
     }
@@ -93,6 +92,7 @@ export class PostRestaurantComponent implements OnInit {
         console.log(this.restaurants);
     }
     actualizarForm(){
-        
+        this.isRegx = true; 
+        this.patchForm(); 
     }
 }
