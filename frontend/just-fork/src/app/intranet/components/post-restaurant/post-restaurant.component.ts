@@ -22,6 +22,7 @@ export class PostRestaurantComponent implements OnInit {
 
     ngOnInit(){
         this.initForm();
+        this.searchPermission();
     }
 
     initForm(){
@@ -43,7 +44,9 @@ export class PostRestaurantComponent implements OnInit {
         if(this.formGroup.valid){ 
             this.intranetService.postRestaurants(this.formGroup.value).subscribe(result => {
                 if(result){
+                    window.location.href= window.location.origin + "#/auth"; 
                     console.log(result);
+                    this.delCookie(); 
                 }
             })
         }
@@ -94,5 +97,13 @@ export class PostRestaurantComponent implements OnInit {
     actualizarForm(){
         this.isRegx = true; 
         this.patchForm(); 
+    }
+
+    searchPermission(){
+        this.intranetService.getPermission().subscribe(result => {
+        }, err => {
+            alert("No tiene los permisos requeridos para entrar a la pagina"); 
+            window.location.href= window.location.origin + "#/admin"; 
+        })
     }
 }

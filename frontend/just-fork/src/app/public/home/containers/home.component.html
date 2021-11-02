@@ -1,10 +1,31 @@
 <h3>Home component trabajando</h3>
-<div *ngFor="let r of restaurants">
-    <h4>{{r.restaurant_name}}</h4>
-    <div>
-        <p> {{r.ubication}} </p>
+
+<div *ngIf="userLog">
+    <button>{{userName}}</button>
+</div>
+
+<div *ngIf="adminLog">
+    <button>{{userName}}</button>
+</div>
+
+<div *ngIf="logged">
+    <button (click)="delCookie()">LogOut</button>
+</div>
+
+<div *ngIf="logged == false">
+    <button>register</button>
+</div>
+
+<div class="all">
+    <div (click)="getId(r.id)" class="card" *ngFor="let r of restaurants">
         <div *ngIf="r.imageUrl">
-            <img [src]="'http://'+r.imageUrl">
+            <img class="img-restaurant" [src]="'http://'+r.imageUrl">
+        </div>
+        <div *ngIf="!r.imageUrl">
+            <img class="img-restaurant" [src]="image_default">
+        </div>
+        <div class="container">
+            <h4>{{r.restaurant_name}}</h4>
         </div>
     </div>
 </div>

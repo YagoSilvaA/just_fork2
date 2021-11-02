@@ -33,6 +33,12 @@ export class IntranetService{
         )
     }
 
+    getPermission(): Observable<any> {
+        return this.http.get(`${baseUrl}permission`).pipe(
+            catchError(this.handleError)
+        )
+    }
+
     private handleError(error: Response) {
         console.log(error);
         const msg = "Error status code" + error.status + "status" + error.statusText;

@@ -33,7 +33,6 @@ export class JWTInterceptorInterceptor implements HttpInterceptor {
         if (err.status === 401) {
           this.router.navigateByUrl('/auth');
         }
-
         return throwError(err);
       })
     );

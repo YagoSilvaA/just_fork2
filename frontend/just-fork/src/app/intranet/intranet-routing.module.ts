@@ -9,7 +9,7 @@ import { UserComponent } from './user/container/user.component';
 const routes: Routes = [
     {path: '', component: IntranetComponent, children: [
         { path: '', redirectTo: 'user', pathMatch: 'full' },
-        { path: 'user', component: UserComponent, canActivate: [AdminGuardGuard] },
+        { path: 'user', component: UserComponent, canActivate: [AdminGuardGuard], data: {preload: true} },
         { path: 'postR', component: PostRestaurantComponent, canActivate: [AdminGuardGuard] }
         ]
     },
@@ -17,7 +17,7 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [],
-    imports: [ RouterModule.forChild(routes) ],
+    imports: [ RouterModule.forChild(routes)],
     exports: [ RouterModule ]
 })
 export class IntranetRoutingModule{

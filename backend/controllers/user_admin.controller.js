@@ -210,9 +210,24 @@ function update(req, res) {
     })
 }
 
+function getPermission(req, res) {
+    const id = req.userData.userId;
+    models.User_admin.findOne({ where: { id: id, permiso: req.userData.permiso } }).then(result => {
+        if (result) {
+            res.status(200).json(result.user_name + " " + result.user_lname);
+        }
+    }).catch(error => {
+        res.status(500).json({
+            message: "Something went wrong",
+            error: error
+        })
+    })
+}
+
 module.exports = {
     signUp: signUp,
     login: login,
     destroy: destroy,
-    update: update
+    update: update,
+    getPermission: getPermission
 }

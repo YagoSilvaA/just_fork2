@@ -9,6 +9,7 @@ import { PublicService } from './public.service';
 import { AuthComponent } from './login/containers/auth.component';
 import { LoginComponent } from './login/components/Login/login.component';
 import { RegisterComponent } from './login/components/Register/register.component';
+import { MenuComponent } from './home/containers/menu/menu.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { RegisterComponent } from './login/components/Register/register.componen
     HomeComponent,
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MenuComponent
   ],
   providers: [
     PublicService

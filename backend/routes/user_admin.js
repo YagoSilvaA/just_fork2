@@ -8,5 +8,6 @@ router.post('/sign-up', user_adminController.signUp);
 router.post('/login', user_adminController.login);
 router.delete('/destroy', checkAuth.checkAuth, user_adminController.destroy);
 router.patch('/update', checkAuth.checkAuth, user_adminController.update);
+router.get('/permission', checkAuth.checkAuth, user_adminController.getPermission);
 
 module.exports = router;

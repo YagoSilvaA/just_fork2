@@ -39,6 +39,24 @@ export class PublicService{
         )
     }
 
+    getPermissionUser(): Observable<any> {
+        return this.http.get(`${baseUrl}user/permission`).pipe(
+            catchError(this.handleError)
+        )
+    }
+
+    getPermissionAdmin(): Observable<any> {
+        return this.http.get(`${baseUrl}user_admin/permission`).pipe(
+            catchError(this.handleError)
+        )
+    }
+
+    getMenuofRestaurant(id: number): Observable<any>{
+        return this.http.get(`${baseUrl}menu/`+id).pipe(
+            catchError(this.handleError)
+        )
+    }
+
     private handleError(error: Response) {
         console.log(error);
         const msg = "Error status code" + error.status + "status" + error.statusText;

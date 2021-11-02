@@ -1,0 +1,21 @@
+<h1>Menu del restaurante de id: </h1>
+
+
+<div class="all">
+    <div class="card" *ngFor="let m of menus">
+        <div *ngIf="m.imageUrl">
+            <img class="img-restaurant" [src]="'http://'+m.imageUrl">
+        </div>
+        <div *ngIf="!m.imageUrl">
+            <img class="img-restaurant" [src]="image_default">
+        </div>
+        <div class="container">
+            <h3>{{m.menu_name}}</h3>
+            <h4>{{m.precio}}</h4>
+        </div>
+        <button (click)="aumentar(m.id)">aumentar</button>
+        <button (click)="descartar(m.id)">eliminar</button>
+    </div>
+</div>
+
+<h3>{{cantidad}}</h3>

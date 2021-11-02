@@ -5,7 +5,7 @@ import { NotFoundComponent } from './core/shared/components/not-found/not-found.
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./public/public.module').then(mod => mod.PublicModule) },
-  { path: 'admin', loadChildren: () => import('./intranet/intranet.module').then(mod => mod.IntranetModule) },
+  { path: 'admin', loadChildren: () => import('./intranet/intranet.module').then(mod => mod.IntranetModule), },
   { path: '**', component: NotFoundComponent }
 ];
 
