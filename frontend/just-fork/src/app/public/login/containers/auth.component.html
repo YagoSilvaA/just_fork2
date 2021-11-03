@@ -1,9 +1,15 @@
-<h2>Auth trabajando owo</h2>
-<button [disabled]="usedBtnUs" (click)="changeLogin()">Login</button>
-<button [disabled]="usedBtnAdm" (click)="changeLogin()">Register</button>
-<div *ngIf="this.btn_bool">
-    <app-login></app-login>
+<div *ngIf="usedBtnUs">
+    <app-user></app-user>
 </div>
-<div *ngIf="this.btn_bool == false">
-    <app-register></app-register>
+
+
+<div *ngIf="usedBtnAdm">
+    <app-admin></app-admin>
+</div>
+
+
+<br>
+<div style="text-align: center;">
+    <button class="admin-user" *ngIf="usedBtnUs" (click)="changeUserAdmin()">Si eres administrador usa este boton</button>
+    <button class="admin-user" *ngIf="usedBtnAdm" (click)="changeUserAdmin()">Si eres usuario usa este boton</button>
 </div>

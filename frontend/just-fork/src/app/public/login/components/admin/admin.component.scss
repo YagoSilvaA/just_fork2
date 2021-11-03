@@ -1,0 +1,159 @@
+button.login-register {
+	appearance: none;
+	padding: 5px;
+	border: none;
+	background-color: #d3cfce;
+	font-weight: 600;
+	border-radius: 5px;
+	width: 20%;
+}
+
+button.login-register:hover {
+	appearance: none;
+	padding: 5px;
+	border: none;
+	font-weight: 600;
+	border-radius: 5px;
+	width: 20%;
+	background-color: #a1abe2;
+}
+
+h2 {
+	text-align: center;
+	font-family: 'Lucida Sans';
+}
+
+div.cobertor-seccion-login {
+	display: table;
+	height: 100%;
+	margin: 0 auto;
+}
+
+div.cobertor-seccion-register {
+	display: table;
+	height: 100%;
+	margin: 0 auto;
+}
+
+div.tabla-login-admin {
+	display: table-cell;
+	width: 50%;
+	text-align: center;
+	font-family: 'Lucida Sans';
+	border: 2px groove rgb(75, 74, 74);
+	background-color: #f7f3f2;
+}
+
+div.tabla-register-admin {
+	display: table-cell;
+	width: 50%;
+	text-align: center;
+	font-family: 'Lucida Sans';
+	border: 2px groove rgb(75, 74, 74);
+	background-color: #f7f3f2;
+}
+
+div.botones-tipo-login {
+	display: table-cell;
+	width: 50%;
+	text-align: center;
+	font-family: 'Lucida Sans';
+}
+
+div.cobertor-tipo-login {
+	display: table;
+	height: 100%;
+	margin: 0 auto;
+}
+
+input[type=text] {
+	padding: 10px;
+	margin: 10px 0;
+	box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+	border-radius: 10px;
+}
+
+input[type=password] {
+	padding: 10px;
+	margin: 10px 0;
+	box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+	border-radius: 10px;
+}
+
+button.login {
+	appearance: none;
+	background-color: #d3cfce;
+	padding: 5px;
+	border: none;
+	font-weight: 600;
+	border-radius: 5px;
+	width: 50%;
+	
+}
+
+button.login:hover {
+	appearance: none;
+
+	padding: 5px;
+	border: none;
+	font-weight: 600;
+	border-radius: 5px;
+	width: 50%;
+	background-color: #a1abe2;
+}
+
+button.register {
+	appearance: none;
+	padding: 5px;
+	border: none;
+	background-color: #d3cfce;
+	font-weight: 600;
+	border-radius: 5px;
+	width: 35%;
+}
+
+button.register:hover {
+	appearance: none;
+	padding: 5px;
+	border: none;
+	font-weight: 600;
+	border-radius: 5px;
+	width: 35%;
+	background-color: #a1abe2;
+}
+
+button.admin-user {
+	appearance: none;
+	background-color: #d3cfce;
+	padding: 5px;
+	border: none;
+	font-weight: 600;
+	border-radius: 5px;
+	width: 50%;
+}
+
+button.admin-user:hover {
+	appearance: none;
+	padding: 5px;
+	border: none;
+	font-weight: 600;
+	border-radius: 5px;
+	width: 50%;
+	background-color: #a1abe2;
+}
+
+
+
+// aea
+div.botones-tipo-login-register {
+	display: table-cell;
+	width: 50%;
+	text-align: center;
+	font-family: 'Lucida Sans';
+}
+
+div.cobertor-tipo-login-register {
+	display: table;
+	height: 100%;
+	margin: 0 auto;
+}

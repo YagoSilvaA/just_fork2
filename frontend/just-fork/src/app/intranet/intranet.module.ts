@@ -4,7 +4,7 @@ import { IntranetRoutingModule } from './intranet-routing.module';
 import { SharedModule } from '../core/shared/shared.module';
 
 import { IntranetComponent } from './intranet.component';
-import { UserComponent } from './user/container/user.component';
+import { MyComponent } from './user/container/user.component';
 import { IntranetService } from './intranet.service';
 import { PostRestaurantComponent } from './components/post-restaurant/post-restaurant.component';
 import { MyRestaurantComponent } from './components/my-restaurant/my-restaurant.component';
@@ -24,7 +24,7 @@ import { ShowPedidoComponent } from './components/pedidos/components/show-all-pe
     ],
     declarations: [
       IntranetComponent,
-      UserComponent,
+      MyComponent,
       PostRestaurantComponent,
       PedidoComponent,
       PostMenusComponent,

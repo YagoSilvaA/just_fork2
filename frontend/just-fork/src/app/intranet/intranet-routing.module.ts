@@ -10,13 +10,13 @@ import { PedidoComponent } from './components/pedidos/components/select-restaura
 import { ShowPedidoComponent } from './components/pedidos/components/show-all-pedidos/show-pedidos.component';
 import { PostRestaurantComponent } from './components/post-restaurant/post-restaurant.component';
 import { IntranetComponent } from './intranet.component';
-import { UserComponent } from './user/container/user.component';
+import { MyComponent } from './user/container/user.component';
 
 
 const routes: Routes = [
     {path: '', component: IntranetComponent, children: [
         { path: '', redirectTo: 'user', pathMatch: 'full' },
-        { path: 'user', component: UserComponent, canActivate: [AdminGuardGuard]},
+        { path: 'user', component: MyComponent, canActivate: [AdminGuardGuard]},
         { path: 'postR', component: PostRestaurantComponent, canActivate: [AdminGuardGuard] },
         { path: 'patchR', component: PatchRestaurantComponent, canActivate: [AdminGuardGuard] },
         { path: 'mis-pedidos', component: PedidoComponent, canActivate: [AdminGuardGuard] },

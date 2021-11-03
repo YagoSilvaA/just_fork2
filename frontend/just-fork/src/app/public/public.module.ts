@@ -7,9 +7,9 @@ import { PublicComponent } from './public.component';
 import { HomeComponent } from './home/containers/home.component';
 import { PublicService } from './public.service';
 import { AuthComponent } from './login/containers/auth.component';
-import { LoginComponent } from './login/components/Login/login.component';
-import { RegisterComponent } from './login/components/Register/register.component';
 import { MenuComponent } from './home/containers/menu/menu.component';
+import { AdminLogComponent } from './login/components/admin/admin.component';
+import { UserLogComponent } from './login/components/user/user.component';
 
 
 @NgModule({
@@ -21,9 +21,9 @@ import { MenuComponent } from './home/containers/menu/menu.component';
     PublicComponent,
     HomeComponent,
     AuthComponent,
-    LoginComponent,
-    RegisterComponent,
-    MenuComponent
+    MenuComponent,
+    AdminLogComponent,
+    UserLogComponent
   ],
   providers: [
     PublicService

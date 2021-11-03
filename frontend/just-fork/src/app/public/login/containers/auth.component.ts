@@ -25,4 +25,9 @@ export class AuthComponent implements OnInit {
             this.btn_bool = true; 
         }
     }
+
+    changeUserAdmin(){
+        this.usedBtnAdm = !this.usedBtnAdm;
+        this.usedBtnUs = !this.usedBtnUs;
+    }
 }
