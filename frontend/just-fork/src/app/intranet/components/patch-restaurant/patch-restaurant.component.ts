@@ -5,39 +5,43 @@ import { CookieService } from "ngx-cookie-service";
 import { IntranetService } from "../../intranet.service";
 
 @Component({
-    selector: 'app-post-restaurant',
-    templateUrl: './post-restaurant.component.html',
-    styleUrls: ['./post-restaurant.component.scss']
+    selector: 'app-patch-restaurant',
+    templateUrl: './patch-restaurant.component.html',
+    styleUrls: ['./patch-restaurant.component.scss']
 })
 
-export class PostRestaurantComponent implements OnInit {
-    form = true;
+export class PatchRestaurantComponent implements OnInit {
+    visual : boolean = false;
+    form : boolean = true;
     selectedFile: File | any = null;
-    formGroup: FormGroup | any;
+    patchGroup: FormGroup | any;
     restaurants: any;
     
     constructor(private intranetService: IntranetService, private http: HttpClient, private cookieService: CookieService) {}
 
     ngOnInit(){
-        this.initForm();
         this.searchPermission();
+        this.getRestaurantData();
+        setTimeout(() => {
+            this.patchForm(); 
+            this.visual = true; 
+        }, 1000);
     }
 
-    initForm(){
-        this.formGroup = new FormGroup({
-            restaurant_name: new FormControl('', [Validators.required]),
-            ubication: new FormControl('', [Validators.required]),
-            imageUrl: new FormControl(''),
+    patchForm(){
+        this.patchGroup = new FormGroup({
+            restaurant_name: new FormControl(this.restaurants.restaurant_name),
+            ubication: new FormControl(this.restaurants.ubication),
+            imageUrl: new FormControl('') 
         })
     }
 
-    postRestaurant(){
-        if(this.formGroup.valid){ 
-            this.intranetService.postRestaurants(this.formGroup.value).subscribe(result => {
+    patchRestaurant(){
+        if(this.patchGroup.valid){
+            this.intranetService.patchRestaurant(this.patchGroup.value).subscribe(result => {
                 if(result){
-                    window.location.href= window.location.origin + "#/auth"; 
                     console.log(result);
-                    this.delCookie(); 
+                    window.location.href= window.location.origin + "#/admin/mi-restaurante"; 
                 }
             })
         }
@@ -55,18 +59,19 @@ export class PostRestaurantComponent implements OnInit {
             fd.append('image', this.selectedFile, this.selectedFile.name);
             this.intranetService.postImage(fd).subscribe(result => {
                 if(result){
-                    console.log(result.url)
-                    this.formGroup.value.imageUrl = "localhost:7899/uploads/" + result.url; 
-                    this.postRestaurant();
-                }
+                    this.patchGroup.value.imageUrl = "localhost:7899/uploads/" + result.url; 
+                    this.patchRestaurant(); 
+                } 
             })
         }
     }
 
-    delCookie(){
-        const value: string = this.cookieService.get('token');
-        this.cookieService.delete('token');
-        console.log(value); 
+
+    getRestaurantData(){
+        this.intranetService.getRestaurantsData().subscribe(
+            response => this.restaurants = response,
+            error => console.log(error),
+        )
     }
 
     searchPermission(){
@@ -77,7 +82,7 @@ export class PostRestaurantComponent implements OnInit {
         })
     }
     moverForm(){
-        if(this.formGroup.valid){     
+        if(this.patchGroup.valid){     
             if(this.form == false){
                 this.form = true; 
             } else {

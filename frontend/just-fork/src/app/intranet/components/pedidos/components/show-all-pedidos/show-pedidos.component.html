@@ -1,0 +1,27 @@
+<h1>Mostrar Pedido con info {{pedidoId}}</h1>
+
+<div *ngIf="visual">
+    <div class="all">
+        <div class="card" *ngFor="let c of compilador">
+            <div *ngIf="c.imageUrl">
+                <img class="img-restaurant" [src]="'http://'+c.imageUrl">
+            </div>
+            <div *ngIf="!c.imageUrl">
+                <img class="img-restaurant" [src]="image_default">
+            </div>
+
+            <div class="container">
+                <h3>{{c.menu_name}}</h3>
+                <h4>{{c.precio}}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="visual">
+    <h2>Estos son los pedidos</h2>
+    <div class="all">
+        <h3>{{pedido.monto}}</h3>
+    </div>
+    <button (click)="redirigir()">Volver</button>
+</div>

@@ -1,7 +1,6 @@
 <h1>Menu del restaurante de id: </h1>
 
-
-<div class="all">
+<div *ngIf="visualCompra" class="all">
     <div class="card" *ngFor="let m of menus">
         <div *ngIf="m.imageUrl">
             <img class="img-restaurant" [src]="'http://'+m.imageUrl">
@@ -13,9 +12,23 @@
             <h3>{{m.menu_name}}</h3>
             <h4>{{m.precio}}</h4>
         </div>
-        <button (click)="aumentar(m.id)">aumentar</button>
-        <button (click)="descartar(m.id)">eliminar</button>
+        <button (click)="aumentar(m.id, m.precio)">aumentar</button>
+        <button (click)="descartar(m.id, m.precio)">eliminar</button>
     </div>
 </div>
 
-<h3>{{cantidad}}</h3>
+<div *ngIf="!visualCompra">
+    <div *ngFor="let i of lista">
+        <p>{{i}}</p>
+    </div>
+</div>
+
+<div *ngIf="visualCompra">
+    <h3>{{cantidad}}</h3>
+    <button (click)="canBuy()">Buy</button>
+</div>
+
+<div *ngIf="!visualCompra">
+    <button (click)="confirmar()">Confirmal</button>
+    <button (click)="return()">Volver</button>
+</div>

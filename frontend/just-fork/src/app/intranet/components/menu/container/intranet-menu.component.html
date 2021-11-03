@@ -1,0 +1,12 @@
+<h1>Intranet Menu Component</h1>
+<div *ngIf="btn_bool">
+    <button (click)="changeBtn()">Agregar un Menu</button>
+</div>
+<div *ngIf="!btn_bool">
+    <app-post-menu></app-post-menu>
+    <button (click)="changeBtn()">Cerrar formulario</button>
+</div>
+
+<button [routerLink]="['/admin/all-menus']">Modificar Menu</button>
+
+<button [routerLink]="['/admin/mi-restaurante']">Volver</button>

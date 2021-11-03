@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.all {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+}
+
+.all .card {
+    width: 200px;
+    height: 230px;
+    border-radius: 8px;
+    background: green;
+    box-shadow: 3px 5px 5px rgba($color: #032033, $alpha: 0.5);
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+}
+
+.img-restaurant {
+    width: 200px;
+    height: 150px;
+}

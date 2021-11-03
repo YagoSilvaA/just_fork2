@@ -17,7 +17,7 @@ function save(req, res) {
 
         const schema = {
             menu_name: { type: "string", optional: false },
-            precio: { type: "number", optional: false, max: "255" },
+            precio: { type: "number", optional: false },
             imageUrl: { type: "string", optional: true, max: "255" },
         }
 
@@ -100,7 +100,7 @@ function update(req, res) {
 
         const schema = {
             menu_name: { type: "string", optional: true, max: "155" },
-            precio: { type: "number", optional: true, max: "255" },
+            precio: { type: "number", optional: true },
             imageUrl: { type: "string", optional: true, max: "255" },
         }
 

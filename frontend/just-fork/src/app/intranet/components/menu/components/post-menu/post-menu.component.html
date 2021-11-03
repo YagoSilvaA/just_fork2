@@ -1,20 +1,19 @@
-<h3>Formulario de post restaurant</h3>
-
-<h4>Si algún dato lo quieres cambiar en un futuro, lo puedes hacer</h4>
+<h1>Menu Component</h1>
 <div *ngIf="form">
     <form [formGroup]="formGroup" (ngSubmit)="moverForm()">
         <div>
-            <input type="text" placeholder="nombre" formControlName="restaurant_name">
+            <input type="text" placeholder="nombre" formControlName="menu_name">
         </div>
         <div>
-            <input type="text" placeholder="ubication" formControlName="ubication">
+            <input type="number" placeholder="precio" formControlName="precio">
         </div>
         <button type="submit">Siguiente</button>
     </form>
 </div>
+
 <div *ngIf="!form">
     <input type="file" (change)="onFileSelected($event)">
     <button type="button" (click)="postImage()">Guardar con imagen</button>
-    <button type="button" (click)="postRestaurant()">Guardar sin imagen</button>
+    <button type="button" (click)="postMenus()">Guardar sin imagen</button>
     <button (click)="moverForm()">Volver</button>
 </div>

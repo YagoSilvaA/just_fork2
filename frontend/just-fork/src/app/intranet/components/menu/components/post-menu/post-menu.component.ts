@@ -2,43 +2,44 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CookieService } from "ngx-cookie-service";
-import { IntranetService } from "../../intranet.service";
+import { IntranetService } from "src/app/intranet/intranet.service";
 
 @Component({
-    selector: 'app-post-restaurant',
-    templateUrl: './post-restaurant.component.html',
-    styleUrls: ['./post-restaurant.component.scss']
+    selector: 'app-post-menu',
+    templateUrl: './post-menu.component.html',
+    styleUrls: ['./post-menu.component.scss']
 })
 
-export class PostRestaurantComponent implements OnInit {
+export class PostMenusComponent implements OnInit {
     form = true;
     selectedFile: File | any = null;
     formGroup: FormGroup | any;
-    restaurants: any;
     
     constructor(private intranetService: IntranetService, private http: HttpClient, private cookieService: CookieService) {}
 
     ngOnInit(){
         this.initForm();
-        this.searchPermission();
     }
 
     initForm(){
         this.formGroup = new FormGroup({
-            restaurant_name: new FormControl('', [Validators.required]),
-            ubication: new FormControl('', [Validators.required]),
-            imageUrl: new FormControl(''),
+            menu_name: new FormControl('', [Validators.required]),
+            precio: new FormControl('', [Validators.required])
         })
     }
 
-    postRestaurant(){
+    postMenus(){
+        console.log(this.formGroup.value)
         if(this.formGroup.valid){ 
-            this.intranetService.postRestaurants(this.formGroup.value).subscribe(result => {
+            this.intranetService.postMenus(this.formGroup.value).subscribe(result => {
                 if(result){
-                    window.location.href= window.location.origin + "#/auth"; 
+                    alert("Se agrego el menu satisfactoriamente"); 
+                    this.initForm(); 
                     console.log(result);
-                    this.delCookie(); 
+                    window.location.href= window.location.origin + "#/admin/all-menus"; 
                 }
+            }, err => {
+                alert("Parece que hubo un problema, intentelo de nuevo más tarde"); 
             })
         }
     }
@@ -57,25 +58,12 @@ export class PostRestaurantComponent implements OnInit {
                 if(result){
                     console.log(result.url)
                     this.formGroup.value.imageUrl = "localhost:7899/uploads/" + result.url; 
-                    this.postRestaurant();
+                    this.postMenus();
                 }
             })
         }
     }
 
-    delCookie(){
-        const value: string = this.cookieService.get('token');
-        this.cookieService.delete('token');
-        console.log(value); 
-    }
-
-    searchPermission(){
-        this.intranetService.getPermission().subscribe(result => {
-        }, err => {
-            alert("No tiene los permisos requeridos para entrar a la pagina"); 
-            window.location.href= window.location.origin + "#/admin"; 
-        })
-    }
     moverForm(){
         if(this.formGroup.valid){     
             if(this.form == false){
@@ -87,4 +75,5 @@ export class PostRestaurantComponent implements OnInit {
             alert("Por favor complete el formulario")
         }
     }
+    
 }

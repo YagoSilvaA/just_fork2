@@ -57,6 +57,12 @@ export class PublicService{
         )
     }
 
+    postPedido(data: any, id:number): Observable<any>{
+        return this.http.post(`${baseUrl}pedido/user/`+id, data).pipe(
+            catchError(this.handleError)
+        )
+    }
+
     private handleError(error: Response) {
         console.log(error);
         const msg = "Error status code" + error.status + "status" + error.statusText;

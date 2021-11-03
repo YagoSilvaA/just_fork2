@@ -1,0 +1,16 @@
+<div class="all">
+    <div class="card" *ngFor="let m of menus" (click)="getId(m.id)">
+        <div *ngIf="m.imageUrl">
+            <img class="img-restaurant" [src]="'http://'+m.imageUrl">
+        </div>
+        <div *ngIf="!m.imageUrl">
+            <img class="img-restaurant" [src]="image_default">
+        </div>
+        <div class="container">
+            <h3>{{m.menu_name}}</h3>
+            <h4>{{m.precio}}</h4>
+        </div>
+    </div>
+</div>
+
+<button [routerLink]="['/admin/mis-menus']">Volver</button>

@@ -1,0 +1,24 @@
+<h3>Formulario de patch restaurant</h3>
+
+<div *ngIf="visual">
+    <div *ngIf="form">
+        <form [formGroup]="patchGroup" (ngSubmit)="moverForm()">
+            <div>
+                <input type="text" placeholder="nombre" formControlName="restaurant_name">
+            </div>
+            <div>
+                <input type="text" placeholder="ubication" formControlName="ubication">
+            </div>
+            <button type="submit">Siguiente</button>
+        </form>
+    </div>
+
+    <div *ngIf="!form">
+        <input type="file" (change)="onFileSelected($event)">
+        <button type="button" (click)="postImage()">Guardar con imagen</button>
+        <button type="button" (click)="patchRestaurant()">Guardar sin imagen</button>
+        <button (click)="moverForm()">Volver</button>
+    </div>
+
+    <button [routerLink]="['/admin/mi-restaurante']">Volver a mi restaurante</button>
+</div>

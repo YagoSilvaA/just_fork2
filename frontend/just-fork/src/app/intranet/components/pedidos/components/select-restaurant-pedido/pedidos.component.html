@@ -1,0 +1,16 @@
+<div *ngIf="visual">
+    <h2>Estos son los pedidos</h2>
+    <div class="all">
+        <div class="card" *ngFor="let c of compilador" (click)="redirigirId(c.pedidoId)">
+            <div *ngIf="c.imageUrl">
+                <img class="img-restaurant" [src]="'http://'+c.imageUrl">
+            </div>
+            <div *ngIf="!c.imageUrl">
+                <img class="img-restaurant" [src]="image_default">
+            </div>
+            <div class="container">
+                <h3>{{c.restaurant_name}}</h3>
+            </div>
+        </div>
+    </div>
+</div>

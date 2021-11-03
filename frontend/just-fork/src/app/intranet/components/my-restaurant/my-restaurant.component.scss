@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#spinn {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+}
+
+#spinn img {
+    width: 250px;
+    height: 250px;
+}
+
+.all {
+    width: 100%;
+    max-width: 1200px;
+    height: 430px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+}
+
+.all .card {
+    width: 330px;
+    height: 360px;
+    border-radius: 8px;
+    background: blue;
+    box-shadow: 3px 5px 5px rgba($color: #032033, $alpha: 0.5);
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+    transition: all 0.25s;
+}
+
+.all .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 3px 12px 16px rgba($color: #032033, $alpha: 0.5);
+}
+
+.img-restaurant {
+    width: 330px;
+    height: 260px;
+}
+
+.card .container {
+    margin-top: 35px;
+}
