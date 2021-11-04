@@ -1,5 +1,15 @@
+<div *ngIf="!visual" id="spinn">
+    <img src="../../../../assets/img/spinner-gif.gif">
+</div>
+
 <div *ngIf="visual">
+    <app-navI></app-navI>
     <h2>Estos son los pedidos</h2>
+
+</div>
+
+
+<div *ngIf="visual">
     <div class="all">
         <div class="card" *ngFor="let c of compilador" (click)="redirigirId(c.pedidoId)">
             <div *ngIf="c.imageUrl">

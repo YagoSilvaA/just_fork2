@@ -1,56 +1,56 @@
 <div *ngIf="isLogVisible">
-	<h2>Login</h2>
-	<div *ngIf="isLogVisible" class="cobertor-seccion-login">
-		<div class="tabla-login-admin">
-		    <h3>Formulario Admin</h3>
-		    <form [formGroup]="formGroupLogin" (ngSubmit)="loginProcessAdmin()">
-			    <div>
-				    <input type="text" placeholder="email" formControlName="email">
-			    </div>
-			    <div>
-				    <input type="password" placeholder="password" formControlName="password">
-			    </div>
-			    <button class="login" type="submit">LOGIN</button>
-		    </form>
-		    <br>
-		</div>
-	    </div>
+    <h2>Login</h2>
+    <div *ngIf="isLogVisible" class="cobertor-seccion-login">
+        <div class="tabla-login-admin">
+            <h3>Formulario Admin</h3>
+            <form [formGroup]="formGroupLogin" (ngSubmit)="loginProcessAdmin()">
+                <div>
+                    <input type="text" placeholder="email" formControlName="email">
+                </div>
+                <div>
+                    <input type="password" placeholder="password" formControlName="password">
+                </div>
+                <button class="login" type="submit">LOGIN</button>
+            </form>
+            <br>
+        </div>
+    </div>
 </div>
 
 
 <div *ngIf="!isLogVisible">
-	<h2>Register</h2>
-	<div *ngIf="!isLogVisible" class="cobertor-seccion-register">
-		<div class="tabla-register-admin">
-			<h3>Formulario Registro Admin</h3>
-			<form [formGroup]="formGroupRegister" (ngSubmit)="registerProcessAdmin()">
-			<div>
-				<input type="text" placeholder="nombre" formControlName="user_name">
-			</div>
-			<div>
-				<input type="text" placeholder="apellido" formControlName="user_lname">
-			</div>
-			<div>
-				<input type="text" placeholder="email" formControlName="email">
-			</div>
-			<div>
-				<input type="password" placeholder="password" formControlName="password">
-			</div>
-			<div>
-				<input type="text" placeholder="ubication" formControlName="ubication">
-			</div>
-			<button class="register" type="submit">REGISTER</button>
-			</form>
-			<br>
-		</div>
-	</div>
+    <h2>Register</h2>
+    <div *ngIf="!isLogVisible" class="cobertor-seccion-register">
+        <div class="tabla-register-admin">
+            <h3>Formulario Registro Admin</h3>
+            <form [formGroup]="formGroupRegister" (ngSubmit)="registerProcessAdmin()">
+                <div>
+                    <input type="text" placeholder="nombre" formControlName="user_name">
+                </div>
+                <div>
+                    <input type="text" placeholder="apellido" formControlName="user_lname">
+                </div>
+                <div>
+                    <input type="text" placeholder="email" formControlName="email">
+                </div>
+                <div>
+                    <input type="password" placeholder="password" formControlName="password">
+                </div>
+                <div>
+                    <input type="text" placeholder="ubication" formControlName="ubication">
+                </div>
+                <button class="register" type="submit">REGISTER</button>
+            </form>
+            <br>
+        </div>
+    </div>
 </div>
 
 <br>
 <div style="text-align: center;">
-	<button *ngIf="!isLogVisible" class="login-register" (click)="changeLogin()">¿Tienes cuenta? Ingresa aqui</button>
-	<!-- <button class="login-register" [disabled]="isLogVisible" (click)="changeLogin()">Login</button> -->
-	
-	<button *ngIf="isLogVisible" class="login-register" (click)="changeLogin()">¿No tienes cuenta? Registrate aqui</button>
-	<!-- <button class="login-register" [disabled]="!isLogVisible" (click)="changeLogin()">Register</button> -->
+    <button *ngIf="!isLogVisible" class="login-register" (click)="changeLogin()">¿Tienes cuenta? Ingresa aqui</button>
+    <!-- <button class="login-register" [disabled]="isLogVisible" (click)="changeLogin()">Login</button> -->
+
+    <button *ngIf="isLogVisible" class="login-register" (click)="changeLogin()">¿No tienes cuenta? Registrate aqui</button>
+    <!-- <button class="login-register" [disabled]="!isLogVisible" (click)="changeLogin()">Register</button> -->
 </div>

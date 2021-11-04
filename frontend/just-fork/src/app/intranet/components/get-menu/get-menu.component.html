@@ -1,4 +1,13 @@
-<div class="all">
+<div *ngIf="!visual" id="spinn">
+    <img src="../../../../assets/img/spinner-gif.gif">
+</div>
+
+
+<div *ngIf="visual">
+    <app-navI></app-navI>
+</div>
+
+<div *ngIf="visual" class="all">
     <div class="card" *ngFor="let m of menus" (click)="getId(m.id)">
         <div *ngIf="m.imageUrl">
             <img class="img-restaurant" [src]="'http://'+m.imageUrl">
@@ -13,4 +22,6 @@
     </div>
 </div>
 
-<button [routerLink]="['/admin/mis-menus']">Volver</button>
+<div *ngIf="visual">
+    <button [routerLink]="['/admin/mis-menus']">Volver</button>
+</div>

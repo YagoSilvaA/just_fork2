@@ -10,6 +10,7 @@ import { AuthComponent } from './login/containers/auth.component';
 import { MenuComponent } from './home/containers/menu/menu.component';
 import { AdminLogComponent } from './login/components/admin/admin.component';
 import { UserLogComponent } from './login/components/user/user.component';
+import { NavComponent } from './navbar/nav.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { UserLogComponent } from './login/components/user/user.component';
     AuthComponent,
     MenuComponent,
     AdminLogComponent,
-    UserLogComponent
+    UserLogComponent,
+    NavComponent
   ],
   providers: [
     PublicService

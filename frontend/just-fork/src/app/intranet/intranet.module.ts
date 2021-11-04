@@ -15,6 +15,7 @@ import { GetMenusComponent } from './components/get-menu/get-menu.component';
 import { PatchRestaurantComponent } from './components/patch-restaurant/patch-restaurant.component';
 import { PedidoComponent } from './components/pedidos/components/select-restaurant-pedido/pedidos.component';
 import { ShowPedidoComponent } from './components/pedidos/components/show-all-pedidos/show-pedidos.component';
+import { NavComponentIntra } from './navbar/nav.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ShowPedidoComponent } from './components/pedidos/components/show-all-pe
       IntranetMenusComponent,
       GetMenusComponent,
       PatchRestaurantComponent,
-      ShowPedidoComponent
+      ShowPedidoComponent,
+      NavComponentIntra
     ],
     providers: [
       IntranetService

@@ -15,6 +15,7 @@ import { baseUrl } from "src/environments/environment";
 
 export class GetMenusComponent implements OnInit {
     menus: any;
+    visual: boolean = false; 
     public restaurant: number | any; 
     image_default: string = `${baseUrl}uploads/1635281441424.jpg`; 
 
@@ -23,6 +24,7 @@ export class GetMenusComponent implements OnInit {
     ngOnInit(){
         this.getRestaurantId();
         setTimeout(() => {
+            this.visual = true; 
             this.getMenuofRestaurant();  
         }, 2000);
     }

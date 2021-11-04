@@ -1,4 +1,11 @@
-<h1>Hola Patch</h1>
+<div *ngIf="!visible" id="spinn">
+    <img src="../../../../assets/img/spinner-gif.gif">
+</div>
+
+<div *ngIf="visible">
+    <app-navI></app-navI>
+    <h1>Hola Patch</h1>
+</div>
 
 <div *ngIf="visible">
     <div *ngIf="form">

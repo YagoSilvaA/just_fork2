@@ -1,0 +1,23 @@
+<header>
+    <div *ngIf="visible">
+        <!--Logo-->
+        <a routerLink="/home">Restaurantes</a>
+        <nav>
+            <ul class="nav_links">
+                <div *ngIf="notlog">
+                    <li id="notLog"> <a routerLink="/auth">Registro y Login</a> </li>
+                </div>
+                <div *ngIf="adminLog" class="isLog">
+                    <li> <a routerLink="/admin/mis-pedidos">Pedidos</a> </li>
+                    <li> <a routerLink="/admin/mi-restaurante">Mi restaurante</a> </li>
+                </div>
+                <div *ngIf="userLog" class="isLog">
+                    <li> <a routerLink="/admin/mis-pedidos">Pedidos</a> </li>
+                </div>
+            </ul>
+        </nav>
+        <div *ngIf="!islog">
+            <p (click)="logOut()">{{userName}}</p>
+        </div>
+    </div>
+</header>

@@ -91,6 +91,8 @@ export class MenuComponent implements OnInit {
     postPedido(){
         this.publicService.postPedido(this.result_pedido, this.restaurantId).subscribe(result => {
             console.log(result); 
+            alert("Pedido creado satisfacctoriamente");
+            window.location.href= window.location.origin + "#/home"; 
             }, error => {
                 console.log(error);
             }
