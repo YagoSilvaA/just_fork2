@@ -1,6 +1,12 @@
-<h1>Menu del restaurante de id: </h1>
+<div *ngIf="!visual" id="spinn">
+    <img src="../../../../../assets/img/spinner-gif.gif">
+</div>
 
-<div *ngIf="visualCompra" class="all">
+<div *ngIf="visual">
+    <app-nav></app-nav>
+</div>
+
+<div *ngIf="visualCompra && visual" class="all">
     <div class="card" *ngFor="let m of menus">
         <div *ngIf="m.imageUrl">
             <img class="img-restaurant" [src]="'http://'+m.imageUrl">
@@ -17,18 +23,30 @@
     </div>
 </div>
 
-<div *ngIf="!visualCompra">
-    <div *ngFor="let i of lista">
-        <p>{{i}}</p>
+<div *ngIf="menu_compilado">
+    <div class="all">
+        <div class="card" *ngFor="let c of compilador">
+            <div *ngIf="c.imageUrl">
+                <img class="img-restaurant" [src]="'http://'+c.imageUrl">
+            </div>
+            <div *ngIf="!c.imageUrl">
+                <img class="img-restaurant" [src]="image_default">
+            </div>
+
+            <div class="container">
+                <h3>{{c.menu_name}}</h3>
+                <h4>{{c.precio}}</h4>
+            </div>
+        </div>
     </div>
 </div>
 
-<div *ngIf="visualCompra">
+<div *ngIf="visualCompra && visual">
     <h3>{{cantidad}}</h3>
     <button (click)="canBuy()">Buy</button>
 </div>
 
-<div *ngIf="!visualCompra">
+<div *ngIf="!visualCompra && visual">
     <button (click)="confirmar()">Confirmal</button>
     <button (click)="return()">Volver</button>
 </div>

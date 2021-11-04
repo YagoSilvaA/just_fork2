@@ -35,8 +35,8 @@ export class PostRestaurantComponent implements OnInit {
         if(this.formGroup.valid){ 
             this.intranetService.postRestaurants(this.formGroup.value).subscribe(result => {
                 if(result){
+                    alert("Su restaurante fue creado con exito, por favor vuelva a logearse")
                     window.location.href= window.location.origin + "#/auth"; 
-                    console.log(result);
                     this.delCookie(); 
                 }
             })

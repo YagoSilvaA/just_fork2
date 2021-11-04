@@ -93,6 +93,42 @@ export class IntranetService{
         )
     }
 
+    getUserData(): Observable<any> {
+        return this.http.get(`${baseUrl}user/data`).pipe(
+            catchError(this.handleError)
+        )
+    }
+
+    getAdminData(): Observable<any> {
+        return this.http.get(`${baseUrl}user_admin/data`).pipe(
+            catchError(this.handleError)
+        )
+    }
+
+    getMyPermiso(): Observable<any> {
+        return this.http.get(`${baseUrl}permission/my-permiso`).pipe(
+            catchError(this.handleError)
+        )
+    }
+
+    PatchUserData(data: any): Observable<any> {
+        return this.http.patch(`${baseUrl}user/update`, data).pipe(
+            catchError(this.handleError)
+        )
+    }
+
+    PatchAdminData(data: any): Observable<any> {
+        return this.http.patch(`${baseUrl}user_admin/update`, data).pipe(
+            catchError(this.handleError)
+        )
+    }
+
+    getMyResId(): Observable<any> {
+        return this.http.get(`${baseUrl}user_admin/resId`).pipe(
+            catchError(this.handleError)
+        )
+    }
+
     private handleError(error: Response) {
         console.log(error);
         const msg = "Error status code" + error.status + "status" + error.statusText;

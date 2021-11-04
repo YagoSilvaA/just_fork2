@@ -1,4 +1,13 @@
-<div class="all">
+<div *ngIf="!visual" id="spinn">
+    <img src="../../../../assets/img/spinner-gif.gif">
+</div>
+
+<div *ngIf="visual">
+    <app-nav></app-nav>
+</div>
+
+
+<div class="all" *ngIf="visual">
     <div (click)="getId(r.id)" class="card" *ngFor="let r of restaurants">
         <div *ngIf="r.imageUrl">
             <img class="img-restaurant" [src]="'http://'+r.imageUrl">

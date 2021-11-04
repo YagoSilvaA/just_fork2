@@ -68,4 +68,9 @@ export class PublicService{
         const msg = "Error status code" + error.status + "status" + error.statusText;
         return throwError(msg); 
     }
+    getMenuData(idr: number, idm: number): Observable<any>{
+        return this.http.get(`${baseUrl}menu/`+idr+'/'+idm).pipe(
+            catchError(this.handleError)
+        )
+    }
 }

@@ -14,11 +14,20 @@ export class HomeComponent implements OnInit {
     
     restaurants: any;
     image_default: string = `${baseUrl}uploads/1635281441424.jpg`; 
+    visual: boolean = false;
 
     constructor(private publicService: PublicService, private cookieService: CookieService) {}
 
     ngOnInit(){
         this.getRestaurants();
+        let timerId = setInterval(() => {
+            if(this.restaurants != undefined){
+                this.visual = true; 
+                clearInterval (timerId)
+            } else {
+                console.log("cargando")
+            }
+        }, 500);
     }
 
     getRestaurants(){
@@ -29,7 +38,6 @@ export class HomeComponent implements OnInit {
     }
 
     getId(data: number){
-        console.log(data);
         window.location.href= window.location.origin + "#/menu/"+data; 
     }
 }

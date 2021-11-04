@@ -27,14 +27,24 @@ export class PatchMenusComponent implements OnInit {
     ngOnInit(){
         this.getRestaurantData();
         this.getMenuId(); 
-        setTimeout(() => {
-            this.getMenuData();
-        }, 1000);
-        setTimeout(() => {
-            this.initForm();
-            this.visible = true; 
-        }, 2000);
+        let timerId = setInterval(() => {
+            if(this.menuId != undefined && this.restaurants != undefined){
+                this.getMenuData();
+                clearInterval (timerId)
+            } else {
+                console.log("No carga")
+            }
+        }, 500);
 
+        let timerInfo = setInterval(() => {
+            if(this.menu != undefined){
+                this.initForm();
+                this.visible = true; 
+                clearInterval (timerInfo)
+            } else {
+                console.log("No carga")
+            }
+        }, 500);
     }
 
     initForm(){

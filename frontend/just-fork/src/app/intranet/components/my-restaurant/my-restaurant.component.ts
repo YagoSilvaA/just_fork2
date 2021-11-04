@@ -19,17 +19,28 @@ export class MyRestaurantComponent implements OnInit {
     patchGroup: FormGroup | any;
     restaurants: any;
     image_default: string = `${baseUrl}uploads/1635281441424.jpg`; 
+    resId: number = -1; 
 
-    private imageUrl: string = ""; 
-    
     constructor(private intranetService: IntranetService, private http: HttpClient, private cookieService: CookieService) {}
 
     ngOnInit(){
         this.getRestaurantData();
-        setTimeout(() => {
-            this.isRegx = true; 
-        }, 3000);
         this.searchPermission(); 
+        this.getMyResId(); 
+        let timerId = setInterval(() => {
+            if(this.resId == 0){
+                alert("No hay restaurante a su nombre, vamos a crear uno!");
+                window.location.href= window.location.origin + "#/admin/postR"; 
+                clearInterval (timerId)
+            } else {
+                if(this.restaurants != undefined){
+                    this.isRegx = true; 
+                    clearInterval (timerId)
+                } else {
+                    console.log("No carga")
+                }
+            }
+        }, 500);
     }
 
     getRestaurantData(){
@@ -38,11 +49,14 @@ export class MyRestaurantComponent implements OnInit {
             error => console.log(error),
         )
     }
-    
-    mostrarData(){
-        console.log(this.restaurants);
-    }
 
+    getMyResId(){
+        this.intranetService.getMyResId().subscribe(
+            response => this.resId = response.id, 
+            error => console.log(error), 
+        )
+    }
+    
     searchPermission(){
         this.intranetService.getPermission().subscribe(result => {
         }, err => {

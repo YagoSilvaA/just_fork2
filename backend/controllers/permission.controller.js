@@ -10,6 +10,19 @@ function permissionCheck(req, res) {
     }
 }
 
+function getUserPermiso(req, res) {
+    if (req.userData.permiso == 1 || req.userData.permiso == 0) {
+        return res.status(200).json({
+            permiso: req.userData.permiso
+        })
+    } else {
+        return res.status(404).json({
+            message: "No se encontro su información"
+        })
+    }
+}
+
 module.exports = {
-    permissionCheck: permissionCheck
+    permissionCheck: permissionCheck,
+    getUserPermiso: getUserPermiso
 }

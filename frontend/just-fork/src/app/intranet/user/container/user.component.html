@@ -1,1 +1,38 @@
-<h1>Esta pestaña Usuario</h1>
+<div *ngIf="visual">
+    <app-navI></app-navI>
+</div>
+
+<div div *ngIf="visual">
+    <h1>Información de usuario</h1>
+    <h4> Nombre y Apellido: {{user.user_name}} {{user.user_lname}}</h4>
+    <div class="cobertor-seccion-login">
+        <div class="tabla-login">
+            <form [formGroup]="formGroup" (ngSubmit)="patchUser()">
+                <fieldset [disabled]="cambiar">
+                    <label>Correo</label>
+                    <input type="text" placeholder="email" formControlName="email">
+                </fieldset>
+                <fieldset [disabled]="cambiar">
+                    <label>Ubicación</label>
+                    <input type="text" placeholder="ubication" formControlName="email">
+                </fieldset>
+                <fieldset [disabled]="cambiar">
+                    <label>Contraseña</label>
+                    <input type="password" placeholder="********" formControlName="password">
+                </fieldset>
+                <fieldset *ngIf="!cambiar">
+                    <label>Verificar contraseña</label>
+                    <input type="password" placeholder="********" formControlName="cpassword">
+                </fieldset>
+                <button class="login" type="submit" *ngIf="form">Guardar</button>
+            </form>
+            <br>
+        </div>
+    </div>
+    <button (click)="permitirCambio()" *ngIf="cambiar">Cambiar datos</button>
+    <button (click)="permitirCambio()" *ngIf="!cambiar">No modificar gados</button>
+</div>
+
+<div div *ngIf="visual">
+    <button (click)="logOut()">Cerrar sesión</button>
+</div>

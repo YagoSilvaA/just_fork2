@@ -32,15 +32,13 @@ export class NavComponent implements OnInit {
             } 
           if(this.userName != ""){
               this.visible = true; 
-              console.log(this.adminLog); 
               clearInterval (timerId)
           }
-      }, 400);
+      }, 100);
       }
     
       getPermissionUser(){
         const value: string = this.cookieService.get('token');
-        console.log(value)
         if(value){
             this.publicService.getPermissionAdmin().subscribe(
                 result => {
@@ -57,14 +55,7 @@ export class NavComponent implements OnInit {
                 }
             )
         }else {
-            console.log("asew")
             this.notlog = true; 
         }
-      }
-
-      logOut(){
-        console.log("adas");
-        const value: string = this.cookieService.get('token');
-        this.cookieService.delete('token');
       }
 }

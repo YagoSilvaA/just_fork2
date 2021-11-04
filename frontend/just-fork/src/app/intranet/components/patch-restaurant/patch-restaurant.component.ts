@@ -22,10 +22,15 @@ export class PatchRestaurantComponent implements OnInit {
     ngOnInit(){
         this.searchPermission();
         this.getRestaurantData();
-        setTimeout(() => {
-            this.patchForm(); 
-            this.visual = true; 
-        }, 1000);
+        let timerId = setInterval(() => {
+            if(this.restaurants != undefined){
+                this.patchForm(); 
+                this.visual = true; 
+                clearInterval (timerId)
+            } else {
+                console.log("No carga")
+            }
+        }, 500);
     }
 
     patchForm(){

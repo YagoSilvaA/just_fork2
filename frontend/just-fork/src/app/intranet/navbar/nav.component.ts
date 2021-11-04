@@ -31,7 +31,6 @@ export class NavComponentIntra implements OnInit {
             }
           if(this.userName != ""){
               this.visible = true; 
-              console.log(this.adminLog); 
               clearInterval (timerId)
           }
       }, 100);
@@ -39,8 +38,6 @@ export class NavComponentIntra implements OnInit {
     
       getPermissionUser(){
         const value: string = this.cookieService.get('token');
-        console.log("ad")
-        console.log(value)
         if(value){
             this.intranetService.getPermissionAdmin().subscribe(
                 result => {
@@ -59,9 +56,5 @@ export class NavComponentIntra implements OnInit {
         }else {
             this.notlog = true; 
         }
-      }
-      logOut(){
-        const value: string = this.cookieService.get('token');
-        this.cookieService.delete('token');
       }
 }

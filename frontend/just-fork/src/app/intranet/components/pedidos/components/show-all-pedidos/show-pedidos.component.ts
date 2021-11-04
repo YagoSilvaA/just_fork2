@@ -26,14 +26,22 @@ export class ShowPedidoComponent implements OnInit {
     ngOnInit(){
         this.getPedidoId(); 
         this.getMyPedido(); 
-        setTimeout(() => {
-            this.getMenuFromId();  
-        }, 200);
+
+        let timerPedido = setInterval(() => {
+            if(this.pedido != undefined ){
+                this.getMenuFromId();   
+                clearInterval (timerPedido)
+            } else {
+                console.log("No carga")
+            }
+        }, 500);
+        
         let timerId = setInterval(() => {
             if(this.compilador.length == this.pedido.pedidosId.length){
                 this.visual = true; 
-                console.log(this.compilador);
                 clearInterval (timerId)
+            } else {
+                console.log("No carga")
             }
         }, 500);
     }

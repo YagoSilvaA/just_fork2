@@ -20,19 +20,36 @@ export class PedidoComponent implements OnInit {
     compilador: any = [];
     visual: boolean = false; 
     image_default: string = `${baseUrl}uploads/1635281441424.jpg`; 
+    noPedido: boolean = true; 
     private modelo: RestaurantePedido | any; 
 
     constructor(private intranetService: IntranetService, private http: HttpClient, private cookieService: CookieService) {}
     
     ngOnInit(){
         this.getPedidos(); 
-        setTimeout(() => {
-            this.showPedidos();  
-        }, 200);
+        let timerPedido = setInterval(() => {
+            if(this.noPedido == false){
+                alert("No tiene pedidos registrados")
+                window.location.href= window.location.origin + "#/home"; 
+                clearInterval (timerPedido)
+            } else {
+                if(this.pedidos != undefined){
+                    this.showPedidos();  
+                    clearInterval (timerPedido)
+                } else {
+                    console.log("No carga")
+                }
+            }
+        }, 500);
+
         let timerId = setInterval(() => {
-            if(this.compilador.length == this.pedidos.length){
-                this.visual = true; 
-                clearInterval (timerId)
+            if(this.noPedido == true){
+                if(this.compilador.length == this.pedidos.length){
+                    this.visual = true; 
+                    clearInterval (timerId)
+                } else {
+                    console.log("No carga")
+                }
             }
         }, 500);
     }
@@ -40,7 +57,10 @@ export class PedidoComponent implements OnInit {
     getPedidos(){
         this.intranetService.getPedidos().subscribe(
             response => this.pedidos = response,
-            error => console.log(error)
+            error => {
+                console.log(error);
+                this.noPedido = false; 
+            }
         ) 
     }
 
@@ -53,8 +73,6 @@ export class PedidoComponent implements OnInit {
                     imageUrl: response.imageUrl,
                     pedidoId: pedidoId
                 }
-                //console.log(response.restaurant_name);
-                //console.log(this.modelo);
                 this.compilador.push(this.modelo); 
             }, error => console.log(error)
         )
@@ -64,7 +82,6 @@ export class PedidoComponent implements OnInit {
         for (let i=1; i<this.pedidos.length+1; i++) {
             setTimeout(() => {
                 let id = (this.pedidos.length-1) - (i-1)
-                //console.log(this.pedidos[id].id)
                 this.restaurantId = this.pedidos[id].restaurantId; 
                 this.getRestaurantData(this.restaurantId, this.pedidos[id].id); 
             }, 100*i);

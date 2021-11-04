@@ -23,10 +23,15 @@ export class GetMenusComponent implements OnInit {
 
     ngOnInit(){
         this.getRestaurantId();
-        setTimeout(() => {
-            this.visual = true; 
-            this.getMenuofRestaurant();  
-        }, 2000);
+        let timerId = setInterval(() => {
+            if(this.restaurant != undefined){
+                this.getMenuofRestaurant();  
+                this.visual = true; 
+                clearInterval (timerId)
+            } else {
+                console.log("No carga")
+            }
+        }, 500);
     }
 
     getRestaurantId(){
@@ -38,7 +43,6 @@ export class GetMenusComponent implements OnInit {
     getMenuofRestaurant(){
         this.intranetService.getMenuofRestaurant(this.restaurant).subscribe(result => {
             this.menus = result; 
-            console.log(result);
             }, error => {
                 console.log(error);
             }

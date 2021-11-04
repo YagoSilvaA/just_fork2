@@ -56,7 +56,6 @@ export class AdminLogComponent implements OnInit {
         if(this.formGroupLogin.valid){ 
             this.publicService.loginAdmin(this.formGroupLogin.value).subscribe(result => {
                 if(result.token){
-                    console.log(result.token);
                     this.cookieService.set('token', result.token);
                     window.location.href= window.location.origin + "#/home"; 
                 }

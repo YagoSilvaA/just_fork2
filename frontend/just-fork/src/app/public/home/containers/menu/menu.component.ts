@@ -25,6 +25,10 @@ export class MenuComponent implements OnInit {
     monto: number = 0; 
     dividir: string | any; 
     lista: string[] = []; 
+    visual: boolean = false;
+    noMenu: boolean = false; 
+    menu_compilado: boolean = false; 
+    compilador: any = [];
 
     private result_pedido: Pedido | any;
 
@@ -35,9 +39,24 @@ export class MenuComponent implements OnInit {
         this.getRestaurantId();
         this.getMenuofRestaurant();  
         this.pedido = ""; 
+        let timerId = setInterval(() => {
+            if(this.noMenu == true){
+                alert("Este restaurante no tiene un menu disponible por el momento"); 
+                window.location.href= window.location.origin + "#/home"; 
+                clearInterval (timerId)
+            } else {
+                if(this.restaurantId != undefined && this.menus != undefined){
+                    this.visual = true; 
+                    clearInterval (timerId)
+                } else {
+                    console.log("cargando")
+                }
+            }
+        }, 500);
     }
 
     canBuy(){
+        this.visual = false; 
         const value: string = this.cookieService.get('token');
         if(!value){
             var opcion = confirm("Al parecer no estar registrado o no estar logeado, ¿quieres hacerlo?")
@@ -53,6 +72,26 @@ export class MenuComponent implements OnInit {
             this.lista = Array.from(this.dividir); 
             this.lista.sort(); 
             this.visualCompra = false; 
+            this.showPedidos(); 
+        }
+    }
+
+    getMenuData(idR: number, idM: number){
+        this.publicService.getMenuData(idR, idM).subscribe(result => {
+            this.compilador.push(result); 
+            if(this.compilador.length == this.lista.length){
+                this.visual = true; 
+                this.menu_compilado = true;
+            }
+        }, error => console.log(error))
+    }
+
+    showPedidos(){
+        for (let i=0; i < this.lista.length; i++) {
+            let id = parseInt(this.lista[i])
+            setTimeout(() => {
+                this.getMenuData(this.restaurantId, id)
+            }, 100*i);
         }
     }
 
@@ -66,11 +105,10 @@ export class MenuComponent implements OnInit {
         this.publicService.getMenuofRestaurant(this.restaurantId).subscribe(result => {
             this.menus = result; 
             }, error => {
-                console.log(error);
+                this.noMenu = true; 
             }
         )
     }
-
 
     aumentar(data: number, precio: number){
         this.cantidad += 1; 
@@ -101,6 +139,12 @@ export class MenuComponent implements OnInit {
 
     return(){
         this.visualCompra = true;
+        if(this.menu_compilado == true){
+            this.menu_compilado = false; 
+            this.compilador = [];
+        } else {
+            this.menu_compilado = true;
+        }
     }
 
     confirmar(){

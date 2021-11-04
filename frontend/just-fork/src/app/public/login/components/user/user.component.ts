@@ -45,7 +45,6 @@ export class UserLogComponent implements OnInit {
         if(this.formGroupLogin.valid){ 
             this.publicService.loginUser(this.formGroupLogin.value).subscribe(result => {
                 if(result.token){
-                    console.log(result.token);
                     this.cookieService.set('token', result.token);
                     window.location.href= window.location.origin + "#/home"; 
                 }

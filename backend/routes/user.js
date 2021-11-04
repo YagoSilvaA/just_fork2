@@ -9,5 +9,6 @@ router.post('/login', userController.login);
 router.delete('/destroy', checkAuth.checkAuth, userController.destroy);
 router.patch('/update', checkAuth.checkAuth, userController.update);
 router.get('/permission', checkAuth.checkAuth, userController.getPermission);
+router.get('/data', checkAuth.checkAuth, userController.getUserData);
 
 module.exports = router;

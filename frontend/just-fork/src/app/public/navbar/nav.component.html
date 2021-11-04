@@ -17,7 +17,7 @@
             </ul>
         </nav>
         <div *ngIf="!islog">
-            <p (click)="logOut()">{{userName}}</p>
+            <p [routerLink]="['/admin/user']">{{userName}}</p>
         </div>
     </div>
 </header>
