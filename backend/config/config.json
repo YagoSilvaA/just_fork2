@@ -1,7 +1,7 @@
 {
     "development": {
-        "username": "sebau12",
-        "password": "123hola",
+        "username": "utec",
+        "password": "1234567890",
         "database": "just_fork",
         "host": "127.0.0.1",
         "dialect": "mysql"

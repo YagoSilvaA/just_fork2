@@ -1,23 +1,37 @@
-<header>
-    <div *ngIf="visible">
-        <!--Logo-->
-        <a routerLink="/home">Restaurantes</a>
-        <nav>
-            <ul class="nav_links">
-                <div *ngIf="notlog">
-                    <li id="notLog"> <a routerLink="/auth">Registro y Login</a> </li>
-                </div>
-                <div *ngIf="adminLog" class="isLog">
-                    <li> <a routerLink="/admin/mis-pedidos">Pedidos</a> </li>
-                    <li> <a routerLink="/admin/mi-restaurante">Mi restaurante</a> </li>
-                </div>
-                <div *ngIf="userLog" class="isLog">
-                    <li> <a routerLink="/admin/mis-pedidos">Pedidos</a> </li>
-                </div>
-            </ul>
-        </nav>
-        <div *ngIf="!islog">
-            <p [routerLink]="['/admin/user']">{{userName}}</p>
+<body>
+    <header>
+        <div class="container">
+        <div *ngIf="visible">
+            <nav>
+        <a routerLink="/home">
+        <div class ="resize" >
+                    <img src="assets/img/logo.jpg">    
+            </div>
+        </a>
+            
+            
+            
+            
+                <ul class="nav_links">
+                    
+                    <div *ngIf="notlog">
+                        <li id="notLog"> <a routerLink="/auth">Registro y Login</a> </li>
+                    </div>
+                    
+                    <div *ngIf="adminLog">
+                        <li> <a routerLink="/admin/mis-pedidos">Pedidos</a> </li>
+                        <li> <a routerLink="/admin/mi-restaurante">Mi restaurante</a> </li>
+                        <li> <a routerLink="/admin/user">{{userName}}</a></li>
+                    </div>
+                    
+                    <div *ngIf="userLog" >
+                        <li> <a routerLink="/admin/mis-pedidos">Pedidos</a> </li>
+                    </div>
+                    
+                </ul>
+            </nav>
+            
         </div>
-    </div>
-</header>
+        </div>
+    </header>
+    </body>
